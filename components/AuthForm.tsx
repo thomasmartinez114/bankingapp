@@ -2,6 +2,11 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { z } from 'zod';
+
+const formSchema = z.object({
+  username: z.string().min(2).max(50),
+});
 
 const AuthForm = ({ type }: { type: string }) => {
   const [user, setUser] = useState(null);
@@ -21,11 +26,21 @@ const AuthForm = ({ type }: { type: string }) => {
           </h1>
         </Link>
         <div className='flex flex-col gap-1 md:gap-3'>
-          <h1>
+          <h1 className='text-24 lg:text-36 font-semibold text-gray-900'>
             {user ? 'Link Account' : type === 'sign-in' ? 'Sign In' : 'Sign Up'}
           </h1>
+          <p className='text-16 font-normal text-gray-600'>
+            {user
+              ? 'Link your account to get started'
+              : 'Please enter your details'}
+          </p>
         </div>
       </header>
+      {user ? (
+        <div className='flex flex-col gap-4'>{/* PlaidLink */}</div>
+      ) : (
+        <>FORM</>
+      )}
     </section>
   );
 };
