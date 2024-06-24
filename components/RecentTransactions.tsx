@@ -38,7 +38,7 @@ const RecentTransactions = ({
 
         {accounts.map((account: Account) => (
           <TabsContent
-            value={account.appwriteItemId}
+            value={account?.appwriteItemId}
             key={account.id}
             className="space-y-4"
           >
